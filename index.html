@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlicBloc | The Unified Creator Ecosystem & Documentation</title>
+  <meta name="description" content="BlicBloc combines long-form publishing (Blics), quick short-form updates (Sparks), public MainSpace identity, and private Creator Space management in one platform." />
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Preload Theme Script to prevent flicker -->
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+      <button id="landing-mobile-toggle" class="mobile-nav-toggle" aria-label="Toggle Menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+
+      <a href="index.html" class="header-brand">
+        <div class="brand-logo-wrapper">
+          <img src="assets/logo4.png" alt="BlicBloc Logo" class="brand-logo" />
+        </div>
+        <span class="brand-name">BlicBloc</span>
+        <span class="brand-tag">Ecosystem</span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation Menu -->
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="#vision-satisfaction" class="nav-link">The Vision</a></li>
+        <li><a href="#problem" class="nav-link">The Problem</a></li>
+        <li><a href="#solution" class="nav-link">Solution</a></li>
+        <li><a href="#showcase" class="nav-link">Blics & Sparks</a></li>
+        <li><a href="docs.html" class="nav-link active">Documentation</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
+        <!-- SVG injected by theme.js -->
+      </button>
+      <a href="docs.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size:0.85rem;">
+        <span>Docs</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation Menu -->
+  <div id="landing-mobile-menu" class="landing-mobile-menu">
+    <a href="#vision-satisfaction" class="nav-link">The Vision</a>
+    <a href="#problem" class="nav-link">The Problem</a>
+    <a href="#solution" class="nav-link">Solution</a>
+    <a href="#showcase" class="nav-link">Blics & Sparks</a>
+    <a href="docs.html" class="btn btn-primary" style="width:100%; text-align:center;">Open User Guides & Docs</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow"></div>
+    <div class="landing-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge badge-cyan">⚡ Creator-First Ecosystem Architecture</span>
+        </div>
+        <h1 class="hero-title">
+          Stop Fragmenting Your Digital Identity.<br />
+          <span class="gradient-text">Welcome to BlicBloc.</span>
+        </h1>
+        <p class="hero-subtitle">
+          The all-in-one platform unifying long-form professional publishing (<strong>Blics</strong>), instant lightweight updates (<strong>Sparks</strong>), public creator branding (<strong>MainSpace</strong>), and private content management (<strong>Creator Space</strong>).
+        </p>
+
+        <div class="hero-actions">
+          <a href="docs.html" class="btn btn-primary" style="padding: 0.85rem 1.75rem; font-size:1.05rem;">
+            <span>Explore Documentation & Guides</span>
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+          <a href="#vision-satisfaction" class="btn btn-secondary" style="padding: 0.85rem 1.75rem; font-size:1.05rem;">
+            <span>Why BlicBloc?</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Interactive Preview Showcase Box -->
+      <div class="hero-preview-box">
+        <div class="preview-bar">
+          <div class="preview-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="preview-title-tab">blicbloc.io/mainspace/@moazzam</div>
+          <span class="badge badge-primary">Live Interactive Model</span>
+        </div>
+
+        <div class="preview-grid">
+          <div class="preview-sidebar-mini">
+            <div class="mini-creator-card">
+              <div class="mini-avatar">MA</div>
+              <div>
+                <div style="font-weight:700; font-size:0.9rem;">Moazzam Ali</div>
+                <div style="font-size:0.75rem; color:var(--text-muted)">@moazzam &bull; MainSpace</div>
+              </div>
+            </div>
+            <div class="mini-nav-item active">⚡ MainSpace Feed</div>
+            <div class="mini-nav-item">📚 Blics Library (24)</div>
+            <div class="mini-nav-item">🔥 Sparks Stream (89)</div>
+            <div class="mini-nav-item">💼 Projects & Code</div>
+            <div class="mini-nav-item">📊 Creator Space</div>
+          </div>
+
+          <div class="preview-main-content">
+            <div class="preview-card" style="border-left: 4px solid var(--primary);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <span class="badge badge-primary">Article Blic</span>
+                <span style="font-size:0.75rem; color:var(--text-muted)">12 min read</span>
+              </div>
+              <h3 style="font-size:1.1rem; margin-bottom:0.35rem; font-weight:700;">Building Scalable Distributed Systems with Rust & WebAssembly</h3>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">An architectural deep-dive into thread safety, async loops, and event stream processing...</p>
+            </div>
+
+            <div class="preview-card" style="border-left: 4px solid var(--accent-spark);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <span class="badge badge-spark">⚡ Quick Spark</span>
+                <span style="font-size:0.75rem; color:var(--text-muted)">2 hours ago</span>
+              </div>
+              <p style="font-size:0.9rem; color:var(--text-primary); font-weight:600;">Just pushed v2.4 of the BlicBloc core schema update! Instant search latency dropped from 45ms to 8ms. Check the docs for migration details. 🚀</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BlicBloc Core Satisfaction & Custom Domains Spotlight Block -->
+  <section id="vision-satisfaction" class="blicbloc-satisfaction-section">
+    <div class="landing-container">
+      <div class="satisfaction-card-wrapper">
+        <div style="margin-bottom: 1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <span class="badge badge-spark">🔥 Core Product Vision & Domain Infrastructure</span>
+          <a href="docs.html#01_mainspace_02_custom_domains_md" class="badge badge-cyan" style="text-decoration:none;">📄 View Custom Domains Guide →</a>
+        </div>
+
+        <h2 class="satisfaction-quote-banner">
+          "All platforms are better, but what BlicBloc does is <span class="highlight-satisfaction">another type of satisfaction</span>."
+        </h2>
+
+        <div class="satisfaction-grid">
+          <div>
+            <p style="font-size:1.1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.25rem;">
+              BlicBloc empowers creators of all kinds—<strong>Freelancers, Teachers, Developers, Designers, Educators, Startups, and Organizations</strong>—to create their own custom digital home called a <strong>MainSpace</strong>.
+            </p>
+
+            <p style="font-size:1rem; color:var(--text-secondary); line-height:1.7; margin-bottom:1.5rem;">
+              Instead of forcing creators into rigid profile templates, BlicBloc allows creators to connect their <strong>own custom domain</strong> (e.g. <code>yourname.com</code>) or claim a free custom BlicBloc subdomain (e.g. <code>username.blicbloc.com</code>). 
+            </p>
+
+            <div class="creator-chips-container">
+              <span class="creator-chip">🧑‍🏫 Teachers</span>
+              <span class="creator-chip">💼 Freelancers</span>
+              <span class="creator-chip">💻 Developers</span>
+              <span class="creator-chip">🎨 Designers</span>
+              <span class="creator-chip">🚀 Startups</span>
+              <span class="creator-chip">🏢 Agencies</span>
+            </div>
+
+            <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
+              <a href="docs.html#01_mainspace_02_custom_domains_md" class="btn btn-primary">
+                <span>Read Custom Domains & Multi-Space Guide →</span>
+              </a>
+              <a href="docs.html#00_overview_02_why_blicbloc_md" class="btn btn-secondary">
+                <span>View Vision Overview</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Interactive Domain & Multi-Space Card Linked to Docs -->
+          <div class="domain-preview-box">
+            <div style="font-weight:700; font-size:1rem; color:var(--text-primary); display:flex; justify-content:space-between; align-items:center;">
+              <span>🌐 Custom Domain & Multi-Space Hub</span>
+              <a href="docs.html#01_mainspace_02_custom_domains_md" class="badge badge-primary" style="text-decoration:none;">Guide</a>
+            </div>
+
+            <a href="docs.html#01_mainspace_02_custom_domains_md" class="domain-pill" style="text-decoration:none;">
+              <span>https://moazzam.blicbloc.com</span>
+              <span class="badge badge-spark">Subdomain</span>
+            </a>
+
+            <a href="docs.html#01_mainspace_02_custom_domains_md" class="domain-pill" style="border-style: solid; border-color: var(--accent-cyan); color: var(--accent-cyan); text-decoration:none;">
+              <span>https://moazzamalidev.com</span>
+              <span class="badge badge-cyan">Custom Root Domain</span>
+            </a>
+
+            <ul class="feature-mini-list">
+              <li class="feature-mini-item">
+                <span class="check-icon">✓</span>
+                <span><strong>Create Multiple Spaces:</strong> Separate MainSpaces for teaching, freelancing, and personal projects under one account.</span>
+              </li>
+              <li class="feature-mini-item">
+                <span class="check-icon">✓</span>
+                <span><strong>Optimization Tools:</strong> Built-in speed indexing, asset compression, and performance analytics.</span>
+              </li>
+              <li class="feature-mini-item">
+                <span class="check-icon">✓</span>
+                <span><strong>Expandable Storage Tiers:</strong> Scale your media library with high-speed cloud storage options.</span>
+              </li>
+            </ul>
+
+            <div style="margin-top:0.5rem; text-align:center;">
+              <a href="docs.html#01_mainspace_02_custom_domains_md" style="font-size:0.85rem; font-weight:700; color:var(--primary);">Learn How Custom Domains Map to MainSpaces →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem vs Solution Section -->
+  <section id="problem" class="problem-solution-section">
+    <div class="landing-container">
+      <div class="section-header">
+        <span class="section-tag">The Core Problem</span>
+        <h2 class="section-title">Why Today's Creator Ecosystem is Broken</h2>
+        <p class="section-desc">Creators are currently forced to manage 5+ disconnected tools, fragmenting their content, audience, and personal brand.</p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="card-icon icon-red">💔</div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Fragmented Digital Footprint</h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">Articles on Substack, short updates on X, portfolios on GitHub/Behance, bio links on Linktree, and video on YouTube. Nothing links together seamlessly.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="card-icon icon-red">⚡</div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Ephemeral vs Durable Friction</h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">Social feeds bury deep, valuable long-form work after 24 hours, while traditional blogs lack quick, casual audience interaction.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="card-icon icon-red">🔒</div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Zero Platform Ownership</h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">Creators don't own their profile architecture or audience relationship. Algorithm shifts wipe out reach overnight.</p>
+        </div>
+      </div>
+
+      <!-- Solution Banner -->
+      <div id="solution" class="section-header" style="margin-top: 4rem;">
+        <span class="section-tag">The BlicBloc Solution</span>
+        <h2 class="section-title">One Unified Creator Infrastructure</h2>
+        <p class="section-desc">BlicBloc replaces fragmented tools with a dual-layer architecture built specifically for creator longevity.</p>
+      </div>
+
+      <div class="problem-grid">
+        <div class="solution-card">
+          <div class="card-icon icon-indigo">🌐</div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">MainSpace (Public Identity)</h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">Your central digital home. Customizable tabs, long-form content, quick updates, downloadable resources, and direct audience engagement under one custom URL.</p>
+        </div>
+
+        <div class="solution-card">
+          <div class="card-icon icon-cyan">🛠️</div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Creator Space (Private Cockpit)</h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">Your private workspace to publish Blics, release Sparks, analyze audience metrics, configure monetization, and manage community communications.</p>
+        </div>
+
+        <div class="solution-card">
+          <div class="card-icon icon-spark">🔥</div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:0.5rem;">Blics & Sparks Content Model</h3>
+          <p style="color:var(--text-secondary); font-size:0.95rem;">Structured, durable long-form work (<strong>Blics</strong>) paired with lightweight, fast updates (<strong>Sparks</strong>) for the ultimate content balance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Feature Showcase Tabs -->
+  <section id="showcase" style="padding: 4rem 0;">
+    <div class="landing-container">
+      <div class="section-header">
+        <span class="section-tag">Interactive Architecture</span>
+        <h2 class="section-title">Explore How BlicBloc Works</h2>
+      </div>
+
+      <div class="interactive-showcase">
+        <div class="showcase-tabs">
+          <button class="tab-btn active" data-tab="blics-sparks">
+            <span>📦 Blics vs Sparks</span>
+          </button>
+          <button class="tab-btn" data-tab="mainspace">
+            <span>🏛️ MainSpace vs Creator Space</span>
+          </button>
+          <button class="tab-btn" data-tab="discovery">
+            <span>🔍 Discovery & Home Feed</span>
+          </button>
+        </div>
+
+        <!-- Panel 1: Blics vs Sparks -->
+        <div id="tab-blics-sparks" class="tab-content-panel active">
+          <div>
+            <span class="badge badge-primary" style="margin-bottom:0.75rem;">Content Primitive</span>
+            <h3 style="font-size:1.6rem; font-weight:800; margin-bottom:1rem;" id="blic-display-title">Structured Blics & Instant Sparks</h3>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem;" id="blic-display-desc">
+              BlicBloc splits content into two complementary primitives. <strong>Blics</strong> are structured long-form assets (Articles, Videos, Projects, Resources, Images). <strong>Sparks</strong> are lightweight, instant updates published directly from MainSpace.
+            </p>
+
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+              <button class="btn btn-secondary blic-type-btn active" data-type="article">Article Blic</button>
+              <button class="btn btn-secondary blic-type-btn" data-type="video">Video Blic</button>
+              <button class="btn btn-secondary blic-type-btn" data-type="project">Project Blic</button>
+              <button class="btn btn-secondary blic-type-btn" data-type="resource">Resource Blic</button>
+            </div>
+
+            <a href="docs.html#03_blics_01_overview_md" class="btn btn-primary">Read Blics User Guide →</a>
+          </div>
+
+          <div style="background:var(--bg-secondary); padding:1.5rem; border-radius:var(--radius-lg); border:1px solid var(--border-subtle)">
+            <span class="badge badge-cyan" id="blic-display-tag" style="margin-bottom:0.75rem;">Article Blic</span>
+            <div style="font-weight:700; font-size:1.1rem; margin-bottom:0.5rem; color:var(--text-primary)">Professional Long-Form Content</div>
+            <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.6;">
+              Blics are built for durability and longevity. They include full table of contents, embedded code blocks, attached resource files, version histories, and SEO indexability.
+            </p>
+          </div>
+        </div>
+
+        <!-- Panel 2: MainSpace vs Creator Space -->
+        <div id="tab-mainspace" class="tab-content-panel">
+          <div>
+            <span class="badge badge-cyan" style="margin-bottom:0.75rem;">Dual Workspace Model</span>
+            <h3 style="font-size:1.6rem; font-weight:800; margin-bottom:1rem;">MainSpace & Creator Space</h3>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem;">
+              <strong>MainSpace</strong> is the visitor-facing profile where readers track, engage, and consume work. <strong>Creator Space</strong> is the private management cockpit where creators write, schedule, analyze, and customize.
+            </p>
+            <a href="docs.html#01_mainspace_01_overview_md" class="btn btn-primary">Explore MainSpace Guide →</a>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <div style="background:var(--bg-surface); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+              <span class="badge badge-primary">MainSpace (Public)</span>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">Public profile, customized hero, visitor subscription tracking, Blic showcase tabs, public Spark stream.</p>
+            </div>
+            <div style="background:var(--bg-surface); padding:1.25rem; border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+              <span class="badge badge-cyan">Creator Space (Private)</span>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:0.5rem;">Analytics dashboard, draft publishing editor, monetization controls, communication channels, domain settings.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 3: Discovery & Home Feed -->
+        <div id="tab-discovery" class="tab-content-panel">
+          <div>
+            <span class="badge badge-spark" style="margin-bottom:0.75rem;">Personalized Feeds</span>
+            <h3 style="font-size:1.6rem; font-weight:800; margin-bottom:1rem;">Smart Discovery & Home Feed</h3>
+            <p style="color:var(--text-secondary); margin-bottom:1.5rem;">
+              The Home Feed combines tracked creator posts with personalized recommendations based on topics, categories, and reader interest graphs.
+            </p>
+            <a href="docs.html#05_discovery_feed_01_overview_md" class="btn btn-primary">Read Home Feed Guide →</a>
+          </div>
+
+          <div style="background:var(--bg-secondary); padding:1.5rem; border-radius:var(--radius-lg); border:1px solid var(--border-subtle);">
+            <div style="font-weight:700; margin-bottom:0.5rem; color:var(--text-primary);">Home Feed Algorithm Principles</div>
+            <ul style="font-size:0.9rem; color:var(--text-secondary); padding-left:1.25rem; line-height:1.7;">
+              <li>Prioritizes tracked MainSpaces first.</li>
+              <li>Surfaces high-quality durable Blics alongside fast Sparks.</li>
+              <li>Global search indexes titles, tags, code snippets, and creator profiles.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sparks Spotlight / Random Documentation Sparks Sampler -->
+  <section id="sparks-discovery" class="sparks-discovery-section">
+    <div class="landing-container">
+      <div class="section-header">
+        <span class="section-tag">User Documentation Discovery</span>
+        <h2 class="section-title">🔥 Discover Sparks from BlicBloc Docs</h2>
+        <p class="section-desc">Explore random topics dynamically selected from our creator & user guides.</p>
+      </div>
+
+      <div id="landing-sparks-grid" class="spark-cards-grid">
+        <!-- Injected dynamically by landing.js -->
+      </div>
+
+      <div style="text-align: center;">
+        <button id="landing-shuffle-btn" class="btn btn-spark" style="padding: 0.75rem 1.75rem;">
+          <span>🎲 Shuffle Random Sparks</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <!-- Brand Col -->
+      <div class="footer-brand-col">
+        <a href="index.html" class="header-brand">
+          <div class="brand-logo-wrapper">
+            <img src="assets/logo4.png" alt="BlicBloc Logo" class="brand-logo" />
+          </div>
+          <span class="brand-name">BlicBloc</span>
+        </a>
+        <p>The unified digital platform combining long-form Blics, instant Sparks, public MainSpace, and private Creator Space into one seamless ecosystem.</p>
+      </div>
+
+      <!-- Links Col 1 -->
+      <div>
+        <div class="footer-heading">Platform</div>
+        <ul class="footer-links">
+          <li><a href="#vision-satisfaction" class="footer-link">The Vision</a></li>
+          <li><a href="#problem" class="footer-link">The Problem</a></li>
+          <li><a href="#solution" class="footer-link">Solution</a></li>
+          <li><a href="#showcase" class="footer-link">Blics & Sparks</a></li>
+          <li><a href="docs.html#06_pricing_storage_01_overview_md" class="footer-link">Pricing & Storage Tiers</a></li>
+        </ul>
+      </div>
+
+      <!-- Links Col 2 -->
+      <div>
+        <div class="footer-heading">User Guides</div>
+        <ul class="footer-links">
+          <li><a href="docs.html#00_overview_01_introduction_md" class="footer-link">00 Welcome to BlicBloc</a></li>
+          <li><a href="docs.html#01_mainspace_02_custom_domains_md" class="footer-link">01 Custom Domains</a></li>
+          <li><a href="docs.html#01_mainspace_01_overview_md" class="footer-link">02 MainSpace Overview</a></li>
+          <li><a href="docs.html#03_blics_01_overview_md" class="footer-link">03 Understanding Blics</a></li>
+          <li><a href="docs.html#04_sparks_01_overview_md" class="footer-link">04 Sparks Overview</a></li>
+          <li><a href="docs.html#07_faq_support_01_faq_md" class="footer-link">07 FAQ & Help</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Links Col (ICON ONLY) -->
+      <div>
+        <div class="footer-heading">Social Links</div>
+        <div class="social-icon-row">
+          <!-- X Icon Only Link -->
+          <a href="https://x.com/moazzamalidev" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="X / @moazzamalidev" aria-label="X Profile">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+
+          <!-- GitHub Icon Only Link -->
+          <a href="https://github.com/moazzamaliii" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="GitHub / @moazzamaliii" aria-label="GitHub Profile">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom & Confidential Copyright Notice -->
+    <div class="footer-bottom">
+      <div>🔒 <strong>Confidential & Proprietary Idea of Moazzam Ali.</strong> &copy; 2026 BlicBloc. All rights reserved.</div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="docs.html#07_faq_support_01_faq_md" class="footer-link">FAQ & Help</a>
+        <a href="docs.html#00_overview_01_introduction_md" class="footer-link">About BlicBloc</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/user-docs-data.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>
