@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedRating = 5;
 
   const ratingDescriptions = {
-    1: '⭐ Poor — Needs lots of improvement',
+    1: '⭐ Poor — Needs improvement',
     2: '⭐⭐ Fair — Getting somewhere',
     3: '⭐⭐⭐ Good — Solid concept',
     4: '⭐⭐⭐⭐ Great — Very excited!',
-    5: '⭐⭐⭐⭐⭐ Excellent — Another type of satisfaction! 🔥'
+    5: '⭐⭐⭐⭐⭐ Excellent — Satisfaction! 🔥'
   };
 
   // Helper: Highlight stars up to count
@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (r <= count) {
         star.style.color = '#f59e0b'; // Amber Gold
         star.style.transform = 'scale(1.15)';
+        star.style.opacity = '1';
       } else {
         star.style.color = '#cbd5e1'; // Muted Slate
         star.style.transform = 'scale(1)';
+        star.style.opacity = '0.6';
       }
     });
 
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Bind Hover, MouseLeave & Click events to Star Buttons
+  // Bind Hover, MouseLeave, Click & Touch events to Star Buttons
   ratingStars.forEach(star => {
     // Hover effect
     star.addEventListener('mouseenter', () => {
@@ -44,16 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mouse leave resets to selected rating
-    star.parentElement.addEventListener('mouseleave', () => {
-      highlightStars(selectedRating);
-    });
+    if (star.parentElement) {
+      star.parentElement.addEventListener('mouseleave', () => {
+        highlightStars(selectedRating);
+      });
+    }
 
-    // Click locks selected rating
-    star.addEventListener('click', (e) => {
+    // Click / Touch locks selected rating
+    const handleSelect = (e) => {
       e.preventDefault();
       selectedRating = parseInt(star.dataset.rating, 10);
       highlightStars(selectedRating);
-    });
+    };
+
+    star.addEventListener('click', handleSelect);
+    star.addEventListener('touchstart', handleSelect, { passive: false });
   });
 
   // Initial UI state (5 Stars default)
@@ -103,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             if (alertBox) {
               alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-emerald-50 text-emerald-700 border-emerald-200";
-              alertBox.textContent = '🎉 Thank you, ' + name + '! Your ' + selectedRating + '-star feedback has been recorded. We appreciate your support!';
+              alertBox.textContent = '🎉 Thank you, ' + name + '! Your ' + selectedRating + '-star rating and feedback have been recorded. We appreciate your support!';
             }
             feedbackForm.reset();
             selectedRating = 5;
