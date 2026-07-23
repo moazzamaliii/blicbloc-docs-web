@@ -165,5 +165,18 @@ window.DOCS_DATA = [
         "content": "# Frequently Asked Questions\n\n## General Questions\n\n### Q: Is BlicBloc free to use?\n**A:** Yes! Any user can sign up, explore content, track creators, and launch a MainSpace with 5GB of storage for free.\n\n### Q: Can I use my own custom domain?\n**A:** Absolutely. You can connect your custom domain (e.g., ) or use your free BlicBloc subdomain ().\n\n### Q: Can I create more than one MainSpace?\n**A:** Yes! You can create multiple MainSpaces under a single account to manage separate personal, freelance, educational, or business brands.\n\n### Q: What is the difference between a Blic and a Spark?\n**A:** A **Blic** is a long-form durable asset (Article, Video, Project, Resource, Image). A **Spark** is a short-form instant update posted directly to your MainSpace timeline.\n"
       }
     ]
+  },
+  {
+    "section_id": "08_platform_status",
+    "section_name": "08 Release & Status Info",
+    "articles": [
+      {
+        "id": "08_platform_status_01_release_info_md",
+        "title": "Platform Release Info",
+        "filename": "01 Platform Status.md",
+        "rel_path": "08 Platform Status/01 Release Info.md",
+        "content": "# 📢 BlicBloc Platform Status & Release Info\n\n> **Current Status:** Concept, Architecture & Community Feedback Phase  \n> **Official Release Date:** To Be Announced (Decided Later)  \n\n---\n\n## 📌 Development Status Update\n\nThank you for your interest in **BlicBloc**!\n\nBlicBloc is currently in active concept design and core architecture development. We have published this interactive website and user documentation hub to present our vision—including **MainSpaces**, **Creator Space**, **Blics & Sparks**, and **Custom Subdomains**—and to gather direct feedback from creators, developers, educators, freelancers, and community members.\n\n---\n\n## 🗓️ Release Date Notice\n\nThere is **no fixed release date set yet**. The official platform launch date will be decided later as development progresses.\n\n### How to Stay Updated:\n- **Submit Feedback:** Share your thoughts in the Community Feedback section on the landing page.\n- **Join the Community:** Follow updates shared across our Discord and X (@moazzamalidev) channels.\n- **Early Supporter Access:** Community members who submit feedback will receive priority notifications when testing dates and release timelines are finalized.\n"
+      }
+    ]
   }
 ];

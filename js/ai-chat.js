@@ -307,6 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Greeting Rule: Always greet users politely (e.g. "Wa Alaikum Assalam!" when greeted with Assalamu Alaikum, or "Hello!").
 
+Release Date Rule: When asked about the platform release date or launch date, state clearly and politely: "BlicBloc is currently in active concept development and community preview phase. There is no official release date fixed yet—it will be decided and announced later to our early community supporters!"
+
 Platform Knowledge Base:
 - BlicBloc Vision: BlicBloc unifies long-form professional publishing (Blics), lightweight instant updates (Sparks), public creator identity (MainSpace), and private content management (Creator Space) under one custom URL.
 - Core Quote: "All platforms are better, but what BlicBloc does is another type of satisfaction."
@@ -318,7 +320,7 @@ Platform Knowledge Base:
 - Target Audience: Teachers, Freelancers, Developers, Designers, Startups, Writers, Educators.
 - Storage Tiers: Free (5 GB), Pro $9/mo (50 GB), Creator $19/mo (250 GB), Studio $39/mo (1 TB).
 
-Be helpful, concise, formatting key terms in bold or lists, and encourage users to build their MainSpace!`;
+Be helpful, concise, formatting key terms in bold or lists, and encourage users to submit feedback on the landing page!`;
 
   let conversationHistory = [
     { role: "system", content: systemPrompt }
