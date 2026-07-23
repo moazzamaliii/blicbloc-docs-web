@@ -1,5 +1,5 @@
 /**
- * BlicBloc Interactive 5-Star Rating & Feedback Handler
+ * BlicBloc Large Interactive 5-Star Rating & Feedback Engine
  * Inserts { name, email, stars, message } into Supabase `feedback` table
  */
 
@@ -10,25 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedRating = 5;
 
   const ratingDescriptions = {
-    1: '⭐ Poor — Needs improvement',
-    2: '⭐⭐ Fair — Getting somewhere',
-    3: '⭐⭐⭐ Good — Solid concept',
-    4: '⭐⭐⭐⭐ Great — Very excited!',
-    5: '⭐⭐⭐⭐⭐ Excellent — Satisfaction! 🔥'
+    1: '⭐ 1/5 — Poor',
+    2: '⭐⭐ 2/5 — Fair',
+    3: '⭐⭐⭐ 3/5 — Good Concept',
+    4: '⭐⭐⭐⭐ 4/5 — Very Excited!',
+    5: '⭐⭐⭐⭐⭐ 5/5 — Excellent! 🔥'
   };
 
   // Helper: Highlight stars up to count
   function highlightStars(count) {
     ratingStars.forEach(star => {
-      const r = parseInt(star.dataset.rating, 10);
+      const r = parseInt(star.getAttribute('data-rating') || star.dataset.rating, 10);
       if (r <= count) {
-        star.style.color = '#f59e0b'; // Amber Gold
-        star.style.transform = 'scale(1.15)';
+        star.style.color = '#f59e0b'; // Vivid Amber Gold
         star.style.opacity = '1';
+        star.style.transform = 'scale(1.15)';
+        star.style.textShadow = '0 0 12px rgba(245, 158, 11, 0.4)';
       } else {
-        star.style.color = '#cbd5e1'; // Muted Slate
+        star.style.color = '#cbd5e1'; // Slate Muted
+        star.style.opacity = '0.4';
         star.style.transform = 'scale(1)';
-        star.style.opacity = '0.6';
+        star.style.textShadow = 'none';
       }
     });
 
@@ -37,31 +39,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Bind Hover, MouseLeave, Click & Touch events to Star Buttons
+  // Bind Mouse & Touch events to each star button
   ratingStars.forEach(star => {
+    const starVal = parseInt(star.getAttribute('data-rating') || star.dataset.rating, 10);
+
     // Hover effect
     star.addEventListener('mouseenter', () => {
-      const hoverVal = parseInt(star.dataset.rating, 10);
-      highlightStars(hoverVal);
+      highlightStars(starVal);
     });
 
-    // Mouse leave resets to selected rating
-    if (star.parentElement) {
-      star.parentElement.addEventListener('mouseleave', () => {
-        highlightStars(selectedRating);
-      });
-    }
-
-    // Click / Touch locks selected rating
-    const handleSelect = (e) => {
+    // Click event to lock in rating
+    star.addEventListener('click', (e) => {
       e.preventDefault();
-      selectedRating = parseInt(star.dataset.rating, 10);
+      selectedRating = starVal;
       highlightStars(selectedRating);
-    };
+    });
 
-    star.addEventListener('click', handleSelect);
-    star.addEventListener('touchstart', handleSelect, { passive: false });
+    // Touch event for smartphones
+    star.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      selectedRating = starVal;
+      highlightStars(selectedRating);
+    }, { passive: false });
   });
+
+  // Mouse leave container resets to locked-in selectedRating
+  const starContainer = document.getElementById('star-rating-container');
+  if (starContainer) {
+    starContainer.addEventListener('mouseleave', () => {
+      highlightStars(selectedRating);
+    });
+  }
 
   // Initial UI state (5 Stars default)
   highlightStars(selectedRating);
@@ -91,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alertBox.classList.remove('hidden');
       }
 
-      // Payload matching schema.sql: { name, email, stars, message }
+      // Payload matching schema: { name, email, stars, message }
       const feedbackPayload = {
         name: name,
         email: email,
@@ -105,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (error) {
             if (alertBox) {
               alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-red-50 text-red-700 border-red-200";
-              alertBox.textContent = 'Error: ' + error.message;
+              alertBox.textContent = 'Error saving feedback: ' + error.message;
             }
           } else {
             if (alertBox) {
               alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-emerald-50 text-emerald-700 border-emerald-200";
-              alertBox.textContent = '🎉 Thank you, ' + name + '! Your ' + selectedRating + '-star rating and feedback have been recorded. We appreciate your support!';
+              alertBox.textContent = '🎉 Thank you, ' + name + '! Your ' + selectedRating + '/5 star rating has been recorded into the database!';
             }
             feedbackForm.reset();
             selectedRating = 5;
