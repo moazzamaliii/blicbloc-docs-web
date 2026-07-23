@@ -1,5 +1,6 @@
 .env
 .env.local
+js/groq-config.js
 *.log
 node_modules/
 .DS_Store
