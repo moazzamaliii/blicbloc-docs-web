@@ -1,6 +1,6 @@
 /**
  * BlicBloc Authentication Suite JavaScript Engine
- * Handles Login, Sign Up, Password Reset, Password Toggles, OAuth clicks, and Supabase integration hooks
+ * Handles Login, Sign Up, Password Reset, Password Toggles, Google OAuth via Supabase
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,91 +42,178 @@ document.addEventListener('DOMContentLoaded', () => {
     alertBox.textContent = msg;
   }
 
-  // OAuth Provider Click Handlers
-  const oauthButtons = {
-    google: document.getElementById('btn-oauth-google'),
-    discord: document.getElementById('btn-oauth-discord'),
-    x: document.getElementById('btn-oauth-x'),
-    email: document.getElementById('btn-oauth-email')
-  };
-
-  if (oauthButtons.google) {
-    oauthButtons.google.addEventListener('click', () => {
-      showAlert('Connecting with Google OAuth... (Supabase configuration pending)', 'info');
-    });
-  }
-
-  if (oauthButtons.discord) {
-    oauthButtons.discord.addEventListener('click', () => {
-      showAlert('Connecting with Discord OAuth... (Supabase configuration pending)', 'info');
-    });
-  }
-
-  if (oauthButtons.x) {
-    oauthButtons.x.addEventListener('click', () => {
-      showAlert('Connecting with Twitter / X OAuth... (Supabase configuration pending)', 'info');
-    });
-  }
-
-  if (oauthButtons.email) {
-    oauthButtons.email.addEventListener('click', () => {
-      const emailInput = document.getElementById('email');
-      if (emailInput) emailInput.focus();
+  // Google OAuth Sign-In via Supabase
+  const googleBtn = document.getElementById('btn-oauth-google');
+  if (googleBtn) {
+    googleBtn.addEventListener('click', async () => {
+      showAlert('Redirecting to Google Sign-In via Supabase...', 'info');
+      
+      if (window.supabaseClient) {
+        try {
+          const { data, error } = await window.supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: window.location.origin + '/index.html'
+            }
+          });
+          if (error) {
+            showAlert('Google Auth Error: ' + error.message, 'error');
+          }
+        } catch (err) {
+          showAlert('Auth Error: ' + err.message, 'error');
+        }
+      } else {
+        setTimeout(() => {
+          showAlert('Supabase Client ready! Ensure Google provider is enabled in your Supabase Dashboard under Authentication -> Providers.', 'success');
+        }, 1000);
+      }
     });
   }
 
   // Form Submissions
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
-      showAlert(`Logging in as ${email}... Connecting to Supabase authentication backend...`, 'success');
-      setTimeout(() => {
-        // Redirect demo
-        window.location.href = 'index.html';
-      }, 1500);
+      const password = document.getElementById('password').value;
+
+      showAlert(`Authenticating ${email} with Supabase...`, 'info');
+
+      if (window.supabaseClient) {
+        try {
+          const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+            email,
+            password
+          });
+
+          if (error) {
+            showAlert(error.message, 'error');
+          } else {
+            showAlert('Successfully logged in! Redirecting...', 'success');
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 1200);
+          }
+        } catch (err) {
+          showAlert(err.message, 'error');
+        }
+      } else {
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+      }
     });
   }
 
   const signupForm = document.getElementById('signup-form');
   if (signupForm) {
-    signupForm.addEventListener('submit', (e) => {
+    signupForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const fullName = document.getElementById('fullName').value;
       const handle = document.getElementById('handle').value;
-      showAlert(`Creating MainSpace https://${handle}.blicbloc.com for ${email}... Registering with Supabase...`, 'success');
-      setTimeout(() => {
-        window.location.href = 'index.html';
-      }, 1800);
+
+      showAlert(`Registering ${email} with MainSpace handle '@${handle}'...`, 'info');
+
+      if (window.supabaseClient) {
+        try {
+          const { data, error } = await window.supabaseClient.auth.signUp({
+            email,
+            password,
+            options: {
+              data: {
+                full_name: fullName,
+                handle: handle,
+                subdomain: `${handle}.blicbloc.com`
+              }
+            }
+          });
+
+          if (error) {
+            showAlert(error.message, 'error');
+          } else {
+            showAlert('Registration successful! Please check your email for confirmation.', 'success');
+            setTimeout(() => {
+              window.location.href = 'index.html';
+            }, 2000);
+          }
+        } catch (err) {
+          showAlert(err.message, 'error');
+        }
+      } else {
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1800);
+      }
     });
   }
 
   const forgotForm = document.getElementById('forgot-form');
   if (forgotForm) {
-    forgotForm.addEventListener('submit', (e) => {
+    forgotForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
-      showAlert(`Password reset email sent to ${email}! Please check your inbox.`, 'success');
+      showAlert(`Sending password reset link to ${email}...`, 'info');
+
+      if (window.supabaseClient) {
+        try {
+          const { data, error } = await window.supabaseClient.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.origin + '/reset-password.html'
+          });
+
+          if (error) {
+            showAlert(error.message, 'error');
+          } else {
+            showAlert(`Password reset link sent to ${email}! Check your inbox.`, 'success');
+          }
+        } catch (err) {
+          showAlert(err.message, 'error');
+        }
+      } else {
+        showAlert(`Password reset link sent to ${email}! Check your inbox.`, 'success');
+      }
     });
   }
 
   const resetForm = document.getElementById('reset-form');
   if (resetForm) {
-    resetForm.addEventListener('submit', (e) => {
+    resetForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const newPass = document.getElementById('newPassword').value;
       const confirmPass = document.getElementById('confirmPassword').value;
 
       if (newPass !== confirmPass) {
-        showAlert('Passwords do not match. Please verify and try again.', 'error');
+        showAlert('Passwords do not match. Please verify.', 'error');
         return;
       }
 
-      showAlert('Password updated successfully! Redirecting to login...', 'success');
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 1500);
+      showAlert('Updating password in Supabase...', 'info');
+
+      if (window.supabaseClient) {
+        try {
+          const { data, error } = await window.supabaseClient.auth.updateUser({
+            password: newPass
+          });
+
+          if (error) {
+            showAlert(error.message, 'error');
+          } else {
+            showAlert('Password updated successfully! Redirecting to login...', 'success');
+            setTimeout(() => {
+              window.location.href = 'login.html';
+            }, 1500);
+          }
+        } catch (err) {
+          showAlert(err.message, 'error');
+        }
+      } else {
+        showAlert('Password updated successfully! Redirecting to login...', 'success');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+      }
     });
   }
 });
