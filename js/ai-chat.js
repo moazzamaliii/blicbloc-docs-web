@@ -358,7 +358,7 @@ Be helpful, concise, formatting key terms in bold or lists, and encourage users 
     }
   });
 
-  // Send Message function
+  // Send Message function (Vercel Serverless API + Direct Client Fallback)
   async function sendMessage(text) {
     appendMessage(text, 'user');
     chatInput.value = '';
@@ -368,16 +368,49 @@ Be helpful, concise, formatting key terms in bold or lists, and encourage users 
     // Typing Indicator
     const typingDiv = document.createElement('div');
     typingDiv.className = 'ai-msg assistant-msg typing-msg';
-    typingDiv.innerHTML = `<div class="msg-content" style="color:var(--text-muted); italic">BlicBloc AI is thinking...</div>`;
+    typingDiv.innerHTML = `<div class="msg-content" style="color:var(--text-muted); font-style:italic">BlicBloc AI is thinking...</div>`;
     chatMessages.appendChild(typingDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    const apiKey = window.GROQ_API_KEY;
     const modelName = window.GROQ_MODEL || "llama-3.3-70b-versatile";
+
+    // 1. Try Vercel Serverless API Endpoint (/api/chat) first
+    try {
+      const vercelRes = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: modelName,
+          messages: conversationHistory
+        })
+      });
+
+      if (vercelRes.ok) {
+        const data = await vercelRes.json();
+        typingDiv.remove();
+        const aiReply = data.choices[0]?.message?.content || "Assalamu Alaikum! How else can I assist you with BlicBloc?";
+        conversationHistory.push({ role: 'assistant', content: aiReply });
+        appendMessage(formatMarkdown(aiReply), 'assistant', true);
+        return;
+      }
+
+      // If Vercel API returns an error message specifically about GROQ_API_KEY missing on Vercel
+      if (vercelRes.status === 500) {
+        const errData = await vercelRes.json();
+        if (errData.error?.message?.includes('GROQ_API_KEY')) {
+          console.warn('Vercel API notice:', errData.error.message);
+        }
+      }
+    } catch (e) {
+      // /api/chat not available (e.g. static local server) - proceed to fallback below
+    }
+
+    // 2. Fallback: Direct Client API call using window.GROQ_API_KEY
+    const apiKey = window.GROQ_API_KEY;
 
     if (!apiKey || apiKey.includes('YOUR_GROQ')) {
       typingDiv.remove();
-      appendMessage("Assalamu Alaikum! BlicBloc AI is online. Please configure your GROQ_API_KEY in js/groq-config.js to enable live LLM responses.", 'assistant');
+      appendMessage("Assalamu Alaikum! BlicBloc AI is online. Please make sure GROQ_API_KEY is added to your Vercel Environment Variables (or configured in js/groq-config.js).", 'assistant');
       return;
     }
 
@@ -386,7 +419,7 @@ Be helpful, concise, formatting key terms in bold or lists, and encourage users 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          'Authorization': `Bearer ${apiKey.trim()}`
         },
         body: JSON.stringify({
           model: modelName,
