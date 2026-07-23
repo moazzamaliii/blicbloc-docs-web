@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const feedbackForm = document.getElementById('community-feedback-form');
   const ratingStars = document.querySelectorAll('.star-rating-btn');
   const ratingTextLabel = document.getElementById('rating-text-label');
-  let selectedRating = 5;
+  let selectedRating = 0; // Starts at 0 (No stars yellow by default)
 
   const ratingDescriptions = {
-    1: '⭐ 1/5 — Poor',
+    0: 'Select rating (1 - 5 stars)',
+    1: '⭐ 1/5 — Needs improvement',
     2: '⭐⭐ 2/5 — Fair',
     3: '⭐⭐⭐ 3/5 — Good Concept',
     4: '⭐⭐⭐⭐ 4/5 — Very Excited!',
@@ -21,21 +22,27 @@ document.addEventListener('DOMContentLoaded', () => {
   function highlightStars(count) {
     ratingStars.forEach(star => {
       const r = parseInt(star.getAttribute('data-rating') || star.dataset.rating, 10);
-      if (r <= count) {
+      if (count > 0 && r <= count) {
         star.style.color = '#f59e0b'; // Vivid Amber Gold
         star.style.opacity = '1';
         star.style.transform = 'scale(1.15)';
         star.style.textShadow = '0 0 12px rgba(245, 158, 11, 0.4)';
       } else {
-        star.style.color = '#cbd5e1'; // Slate Muted
-        star.style.opacity = '0.4';
+        star.style.color = '#cbd5e1'; // Slate Muted Gray
+        star.style.opacity = '0.5';
         star.style.transform = 'scale(1)';
         star.style.textShadow = 'none';
       }
     });
 
-    if (ratingTextLabel && ratingDescriptions[count]) {
-      ratingTextLabel.textContent = ratingDescriptions[count];
+    if (ratingTextLabel) {
+      if (count > 0 && ratingDescriptions[count]) {
+        ratingTextLabel.textContent = ratingDescriptions[count];
+        ratingTextLabel.style.color = '#f59e0b';
+      } else {
+        ratingTextLabel.textContent = 'Select rating (1 - 5 stars)';
+        ratingTextLabel.style.color = 'var(--text-muted)';
+      }
     }
   }
 
@@ -71,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initial UI state (5 Stars default)
-  highlightStars(selectedRating);
+  // Initial UI state (0 Stars selected by default)
+  highlightStars(0);
 
   // Form Submission
   if (feedbackForm) {
@@ -88,6 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (alertBox) {
           alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-red-50 text-red-700 border-red-200";
           alertBox.textContent = 'Please fill out your Name, Email, and Feedback message.';
+          alertBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      if (selectedRating === 0) {
+        if (alertBox) {
+          alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-red-50 text-red-700 border-red-200";
+          alertBox.textContent = 'Please tap or click on the stars to select your rating (1 to 5 stars).';
           alertBox.classList.remove('hidden');
         }
         return;
@@ -121,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
               alertBox.textContent = '🎉 Thank you, ' + name + '! Your ' + selectedRating + '/5 star rating has been recorded into the database!';
             }
             feedbackForm.reset();
-            selectedRating = 5;
-            highlightStars(5);
+            selectedRating = 0;
+            highlightStars(0);
           }
         } catch (err) {
           if (alertBox) {
@@ -130,6 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alertBox.textContent = '🎉 Thank you, ' + name + '! Your feedback has been received.';
           }
           feedbackForm.reset();
+          selectedRating = 0;
+          highlightStars(0);
         }
       } else {
         if (alertBox) {
@@ -137,6 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
           alertBox.textContent = '🎉 Thank you, ' + name + '! Your feedback has been submitted successfully.';
         }
         feedbackForm.reset();
+        selectedRating = 0;
+        highlightStars(0);
       }
     });
   }
