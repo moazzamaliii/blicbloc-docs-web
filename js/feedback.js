@@ -37,8 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const name = document.getElementById('feedback-name').value;
       const email = document.getElementById('feedback-email').value;
-      const creatorType = document.getElementById('feedback-creator-type').value;
-      const feedbackType = document.getElementById('feedback-type').value;
       const message = document.getElementById('feedback-message').value;
       const alertBox = document.getElementById('feedback-alert');
 
@@ -49,10 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const feedbackData = {
-        name: name || 'Anonymous Creator',
+        name: name,
         email: email,
-        creator_type: creatorType,
-        feedback_type: feedbackType,
+        creator_type: 'Community Member',
+        feedback_type: 'Idea Impression',
         rating: selectedRating,
         message: message
       };
@@ -68,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             if (alertBox) {
               alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-emerald-50 text-emerald-700 border-emerald-200";
-              alertBox.textContent = '🎉 Thank you! Your feedback has been recorded. We appreciate your support!';
+              alertBox.textContent = '🎉 Thank you, ' + name + '! Your feedback has been recorded. We appreciate your support!';
             }
             feedbackForm.reset();
             updateStarUI(5);
@@ -76,14 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
           if (alertBox) {
             alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-emerald-50 text-emerald-700 border-emerald-200";
-            alertBox.textContent = '🎉 Thank you! Your feedback has been received.';
+            alertBox.textContent = '🎉 Thank you, ' + name + '! Your feedback has been received.';
           }
           feedbackForm.reset();
         }
       } else {
         if (alertBox) {
           alertBox.className = "p-4 rounded-xl text-xs font-medium border bg-emerald-50 text-emerald-700 border-emerald-200";
-          alertBox.textContent = '🎉 Thank you! Your feedback has been submitted successfully.';
+          alertBox.textContent = '🎉 Thank you, ' + name + '! Your feedback has been submitted successfully.';
         }
         feedbackForm.reset();
       }
