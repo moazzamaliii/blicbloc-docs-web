@@ -1,27 +1,10 @@
 /**
- * BlicBloc Feedback & Community Actions Header Manager
+ * BlicBloc Header Session Helper
  */
 
 (function () {
+  // Keeps top header clean while preserving theme toggle
   document.addEventListener('DOMContentLoaded', () => {
-    renderHeaderActions();
+    // Top header actions clean
   });
-
-  function renderHeaderActions() {
-    const headerActions = document.querySelector('.header-actions');
-    if (!headerActions) return;
-
-    // Check if feedback CTA already exists
-    if (!headerActions.querySelector('.feedback-header-btn')) {
-      const btn = document.createElement('a');
-      btn.href = 'index.html#feedback';
-      btn.className = 'btn btn-primary feedback-header-btn';
-      btn.style.padding = '0.5rem 1rem';
-      btn.style.fontSize = '0.85rem';
-      btn.innerHTML = `
-        <span>💬 Submit Feedback</span>
-      `;
-      headerActions.appendChild(btn);
-    }
-  }
 })();

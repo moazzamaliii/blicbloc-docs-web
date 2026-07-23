@@ -53,9 +53,6 @@
       <button class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Theme">
         <!-- SVG injected by theme.js -->
       </button>
-      <a href="#feedback" class="btn btn-primary" style="padding: 0.5rem 1.15rem; font-size:0.85rem;">
-        <span>💬 Give Feedback</span>
-      </a>
     </div>
   </header>
 
@@ -436,13 +433,16 @@
 
           <!-- Star Rating Picker -->
           <div>
-            <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-primary); margin-bottom:0.35rem;">How excited are you about BlicBloc?</label>
-            <div style="display:flex; gap:0.5rem; font-size:1.5rem; cursor:pointer;" id="star-rating-container">
-              <button type="button" class="star-rating-btn text-amber-400" data-rating="1">★</button>
-              <button type="button" class="star-rating-btn text-amber-400" data-rating="2">★</button>
-              <button type="button" class="star-rating-btn text-amber-400" data-rating="3">★</button>
-              <button type="button" class="star-rating-btn text-amber-400" data-rating="4">★</button>
-              <button type="button" class="star-rating-btn text-amber-400" data-rating="5">★</button>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+              <label style="display:block; font-size:0.85rem; font-weight:600; color:var(--text-primary);">How excited are you about BlicBloc?</label>
+              <span id="rating-text-label" style="font-size:0.8rem; font-weight:700; color:#f59e0b;">⭐⭐⭐⭐⭐ Excellent</span>
+            </div>
+            <div style="display:flex; gap:0.5rem; font-size:2rem; cursor:pointer;" id="star-rating-container">
+              <button type="button" class="star-rating-btn" data-rating="1" style="background:none; border:none; color:#f59e0b; transition:all 0.2s; padding:0; line-height:1;">★</button>
+              <button type="button" class="star-rating-btn" data-rating="2" style="background:none; border:none; color:#f59e0b; transition:all 0.2s; padding:0; line-height:1;">★</button>
+              <button type="button" class="star-rating-btn" data-rating="3" style="background:none; border:none; color:#f59e0b; transition:all 0.2s; padding:0; line-height:1;">★</button>
+              <button type="button" class="star-rating-btn" data-rating="4" style="background:none; border:none; color:#f59e0b; transition:all 0.2s; padding:0; line-height:1;">★</button>
+              <button type="button" class="star-rating-btn" data-rating="5" style="background:none; border:none; color:#f59e0b; transition:all 0.2s; padding:0; line-height:1;">★</button>
             </div>
           </div>
 
