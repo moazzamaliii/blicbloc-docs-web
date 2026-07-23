@@ -62,13 +62,15 @@ CREATE TRIGGER on_auth_user_created
 
 
 -- ====================================================================
--- 2. FEEDBACK TABLE (Name, Email, Stars, Message)
+-- 2. FEEDBACK TABLE (4 Columns: name, email, stars, message)
 -- ====================================================================
-CREATE TABLE IF NOT EXISTS public.feedback (
+DROP TABLE IF EXISTS public.feedback CASCADE;
+
+CREATE TABLE public.feedback (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL,
     email TEXT NOT NULL,
-    stars INT CHECK (stars >= 1 AND stars <= 5) NOT NULL DEFAULT 5,
+    stars INT NOT NULL DEFAULT 5,
     message TEXT NOT NULL,
     created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL
 );
@@ -85,6 +87,4 @@ CREATE POLICY "Anyone can view feedback"
     ON public.feedback FOR SELECT 
     USING (true);
 
-CREATE INDEX IF NOT EXISTS idx_feedback_created ON public.feedback(created_at DESC);
-
-COMMENT ON TABLE public.feedback IS 'Stores community feedback with name, email, stars given (1-5), and message.';
+COMMENT ON TABLE public.feedback IS 'BlicBloc Feedback table with columns: name, email, stars, message';
